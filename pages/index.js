@@ -1,11 +1,15 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+// import styles from '../styles/Home.module.scss';
+
+import Header from '../components/header';
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      Yo!
-    </div>
-  );
+  return <div>
+      <Head>
+        <html lang='en' />
+        <title>JUET Overflow</title>
+        <meta name='description' content='JUET Overflow is a discussion board for JUET students from all years and branches.' />
+      </Head>
+    <Header />
+  </div>;
 }
