@@ -5,6 +5,7 @@ import useCookie from 'react-use-cookie';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Banner from '../components/banner';
+import Forums from '../components/forums';
 
 export default function Home() {
   const [token, setToken] = useCookie('token');
@@ -19,7 +20,7 @@ export default function Home() {
       </Head>
     <Header token={token} setToken={setToken} isLoggedIn={isLoggedIn} />
     {
-      !isLoggedIn() ? <Banner /> : ''
+      !isLoggedIn() ? <Banner /> : <Forums />
     }
     <Footer />
   </div>;
