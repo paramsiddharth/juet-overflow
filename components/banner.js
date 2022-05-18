@@ -13,7 +13,7 @@ export default function Banner() {
       className='block rounded-md'
       />
 
-    <p className='pt-8 text-xl pb-9'>
+    <p className='pt-5 text-xl pb-9'>
       JUET Overflow makes it easier for JUETians to connect and interact
       on topics and have collaborative discussions.
     </p>
