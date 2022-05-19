@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import Banner from '../components/banner';
 import Forums from '../components/forums';
 import Loginscreen from '../components/loginscreen';
+import Signupscreen from '../components/signupscreen';
 
 export default function Home() {
   const [token, setToken] = useCookie('token');
