@@ -6,6 +6,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Banner from '../components/banner';
 import Forums from '../components/forums';
+import Loginscreen from '../components/loginscreen';
 
 export default function Home() {
   const [token, setToken] = useCookie('token');
@@ -20,7 +21,7 @@ export default function Home() {
       </Head>
     <Header token={token} setToken={setToken} isLoggedIn={isLoggedIn} />
     {
-      !isLoggedIn() ? <Banner /> : <Forums />
+      !isLoggedIn() ? <><Banner /><Loginscreen/></> : <Forums />
     }
     <Footer />
   </div>;
