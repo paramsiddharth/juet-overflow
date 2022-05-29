@@ -1,29 +1,22 @@
 import Head from 'next/head';
-import useCookie from 'react-use-cookie';
 // import styles from '../styles/Home.module.scss';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Banner from '../components/banner';
 import Forums from '../components/forums';
-import Loginscreen from '../components/loginscreen';
-import Signupscreen from '../components/signupscreen';
+import Main from '../components/main';
 
-export default function Home() {
-  const [token, setToken] = useCookie('token');
+export default function Home({ token, setToken, isLoggedIn }) {
 
-  const isLoggedIn = () => !!token;
-
-  return <div>
+  return <Main isLoggedIn={isLoggedIn}>
       <Head>
         <html lang='en' />
-        <title>JUET Overflow</title>
+        <title>{ !isLoggedIn() ? 'Home' : 'Forums' } - JUET Overflow</title>
         <meta name='description' content='JUET Overflow is a discussion board for JUET students from all years and branches.' />
       </Head>
-    <Header token={token} setToken={setToken} isLoggedIn={isLoggedIn} />
     {
-      !isLoggedIn() ? <><Banner /><Loginscreen/></> : <Forums />
+      !isLoggedIn() ? <Banner /> : <Forums />
     }
-    <Footer />
-  </div>;
+  </Main>;
 }

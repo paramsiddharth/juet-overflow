@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 // import styles from '../styles/Home.module.scss';
 
-import Signupscreen from '../components/signupscreen';
+import Loginscreen from '../components/loginscreen';
 import Main from '../components/main';
 
-export default function SignUp({ token, setToken, isLoggedIn }) {
+export default function Login({ token, setToken, isLoggedIn }) {
   const router = useRouter();
 
   if (isLoggedIn()) {
@@ -14,8 +14,8 @@ export default function SignUp({ token, setToken, isLoggedIn }) {
 
   return <Main isLoggedIn={isLoggedIn}>
     <Head>
-      <title>Register - JUET Overflow</title>
+      <title>Login - JUET Overflow</title>
     </Head>
-    <Signupscreen/>
+    <Loginscreen/>
   </Main>;
 }

@@ -1,62 +1,59 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Logo from '../images/logo.png';
 
-export default function Header({ token, setToken, isLoggedIn }) {
-
-  const login = e => {
-    e.preventDefault();
-
-    setToken('123');
-  };
-
-  const logout = e => {
-    e.preventDefault();
-
-    setToken('');
-  };
-
+export default function Header({ isLoggedIn }) {
   return <div
       className='w-screen px-6 flex flex-row items-center justify-between
       bg-neutral-800 text-white'
       >
-    <a href='/' className='flex flex-row items-center'>
-      <Image
-        src={Logo}
-        width='50px'
-        height='50px'
-        className='block rounded-full'
-        />
-      <h1 id='brand' className='ml-2 font-bold'>JUET Overflow</h1>
-    </a>
+    <Link href='/'>
+      <a className='flex flex-row items-center'>
+        <Image
+          src={Logo}
+          width='50px'
+          height='50px'
+          className='block rounded-full'
+          />
+        <h1 id='brand' className='ml-2 font-bold'>JUET Overflow</h1>
+      </a>
+    </Link>
 
-    <ul className='list-none flex flex-row justify-between w-60'>
+    <ul className='list-none flex flex-row justify-between w-80'>
       <li>
-        <a href='/'>
+        <Link href='/'>
           Home
-        </a>
+        </Link>
       </li>
       <li>
-        <a href='/about'>
+        <Link href='/about'>
           About
-        </a>
+        </Link>
       </li>
       <li>
-        <a href='/contact'>
+        <Link href='/contact'>
           Contact
-        </a>
+        </Link>
       </li>
-      <li>
-        {
-          !isLoggedIn() ? 
-            <a onClick={login} href='/login'>
-              Login
-            </a>
-          : <a onClick={logout} href='/logout'>
-              Logout
-            </a>
-        }
-      </li>
+      {
+        !isLoggedIn() ? 
+          <>
+            <li>
+              <Link href='/login'>
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link href='/signup'>
+                Register
+              </Link>
+            </li>
+          </>
+        : <Link href='/logout'>
+          Logout
+        </Link>
+      }
     </ul>
 
     <div className='hidden md:hidden'>
