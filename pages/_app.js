@@ -1,28 +1,34 @@
+import { getCookie, removeCookies, setCookies } from 'cookies-next';
 import { useState } from 'react';
-import { getCookie, setCookies } from 'cookies-next';
 
 import '../styles/globals.css';
 import '../styles/globals.scss';
 import 'normalize.css';
 
-export default function MyApp({ Component, pageProps, token: serverToken }) {
+function MyApp({ Component, pageProps, serverToken }) {
   const [token, setTokenState] = useState(serverToken);
 
   const setToken = newToken => {
-    setTokenState(newToken);
     setCookies('token', newToken);
+    setTokenState(newToken);
+  };
+
+  const removeToken = () => {
+    removeCookies('token');
+    setTokenState(null);
   };
 
   const isLoggedIn = () => !!token;
 
-  return <Component {...pageProps} token={token} setToken={setToken} isLoggedIn={isLoggedIn} />;
+  return <Component {...pageProps} token={token} setToken={setToken} removeToken={removeToken} isLoggedIn={isLoggedIn} />;
 }
 
-export function getServerSideProps({ req, res }) {
+MyApp.getInitialProps = async ({ ctx: { req, res } }) => {
   const token = getCookie('token', { req, res });
+
   return {
-    props: {
-      token
-    }
+    serverToken: token ?? null
   };
-}
+};
+
+export default MyApp;

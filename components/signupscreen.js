@@ -1,9 +1,22 @@
-import Logo from '../images/logo.png';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { FaFacebookF, FaLinkedinIn, FaGoogle, FaRegEnvelope, FaArrowLeft } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 
-export default function Signupscreen() {
+import Logo from '../images/logo.png';
+
+export default function Signupscreen({ onSignUp }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  
+  const onSignUpCustom = e => {
+    e.preventDefault();
+    
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    onSignUp({ email, password });
+  };
+
   return <>
     <main className='flex flex-col items-center justify-center w-full flex-1 px-20 text-center my-32'>
       <div className='bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
@@ -35,17 +48,17 @@ export default function Signupscreen() {
             <div className='flex flex-col items-center'>
               <div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
                 <FaRegEnvelope className='text-gray-400 m-2' />
-                <input type="email" name='email' placeholder='JUET Email' className='bg-gray-100 outline-none text-sm flex-1' />
+                <input ref={emailRef} type="email" name='email' placeholder='JUET Email' className='bg-gray-100 outline-none text-sm flex-1' />
               </div>
               <div className='bg-gray-100 w-64 p-2 flex items-center mb-2'>
                 <MdLockOutline className='text-gray-400 m-2' />
-                <input type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm flex-1' />
+                <input ref={passwordRef} type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm flex-1' />
               </div>
-              <div className='bg-gray-100 w-64 p-2 flex items-center mb-2'>
+              {/* <div className='bg-gray-100 w-64 p-2 flex items-center mb-2'>
                 <MdLockOutline className='text-gray-400 m-2' />
                 <input type="password" name='password' placeholder='Confirm Password' className='bg-gray-100 outline-none text-sm flex-1' />
-              </div>
-              <a href="#" className='border-2 border-slate-800 text-slate-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-slate-800 hover:text-white'>Sign Up</a>
+              </div> */}
+              <a onClick={onSignUpCustom} href="#" className='border-2 border-slate-800 text-slate-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-slate-800 hover:text-white'>Sign Up</a>
             </div>
           </div>
         </div>

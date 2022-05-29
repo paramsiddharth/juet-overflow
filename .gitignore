@@ -32,3 +32,6 @@ yarn-error.log*
 .vercel
 
 *:Zone.Identifier
+*.rest
+*.http
+*.tasks

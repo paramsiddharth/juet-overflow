@@ -1,11 +1,20 @@
-import Logo from '../images/logo.png';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { FaFacebookF, FaLinkedinIn, FaGoogle, FaRegEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 
-export default function Loginscreen() {
-  const onLogin = () => {
+import Logo from '../images/logo.png';
+
+export default function Loginscreen({ onLogin }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  
+  const onLoginCustom = e => {
+    e.preventDefault();
     
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    onLogin({ email, password });
   };
 
   return <>
@@ -39,18 +48,18 @@ export default function Loginscreen() {
             <div className='flex flex-col items-center'>
               <div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
                 <FaRegEnvelope className='text-gray-400 m-2' />
-                <input type="email" name='email' placeholder='JUET Email' className='bg-gray-100 outline-none text-sm flex-1' />
+                <input ref={emailRef} type="email" name='email' placeholder='JUET Email' className='bg-gray-100 outline-none text-sm flex-1' />
               </div>
               <div className='bg-gray-100 w-64 p-2 flex items-center mb-2'>
                 <MdLockOutline className='text-gray-400 m-2' />
-                <input type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm flex-1' />
+                <input ref={passwordRef} type="password" name='password' placeholder='Password' className='bg-gray-100 outline-none text-sm flex-1' />
               </div>
               <div className='flex justify-between w-64 mb-5'>
                 <label className='flex items-center text-xs'><input type='checkbox' name='remember' className='mr-1' />Remember Me</label>
                 <a href="#" className='text-xs'>Forgot Password?</a>
               </div>
 
-              <a href="#" className='border-2 border-slate-800 text-slate-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-slate-800 hover:text-white'>Sign In</a>
+              <a onClick={onLoginCustom} href="#" className='border-2 border-slate-800 text-slate-800 rounded-full px-12 py-2 inline-block font-semibold hover:bg-slate-800 hover:text-white'>Sign In</a>
             </div>
           </div>
         </div>

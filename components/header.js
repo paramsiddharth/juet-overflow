@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Logo from '../images/logo.png';
 
@@ -37,7 +39,7 @@ export default function Header({ isLoggedIn }) {
         </Link>
       </li>
       {
-        !isLoggedIn() ? 
+        !isLoggedIn() ?
           <>
             <li>
               <Link href='/login'>
@@ -57,9 +59,9 @@ export default function Header({ isLoggedIn }) {
     </ul>
 
     <div className='hidden md:hidden'>
-      <button class='hamburger hamburger--emphatic fill-white' type='button'>
-        <span class='hamburger-box'>
-          <span class='hamburger-inner'></span>
+      <button className='hamburger hamburger--emphatic fill-white' type='button'>
+        <span className='hamburger-box'>
+          <span className='hamburger-inner'></span>
         </span>
       </button>
     </div>

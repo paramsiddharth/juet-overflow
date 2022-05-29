@@ -7,12 +7,12 @@ import Banner from '../components/banner';
 import Forums from '../components/forums';
 import Main from '../components/main';
 
-export default function Home({ token, setToken, isLoggedIn }) {
+export default function Home({ isLoggedIn }) {
 
   return <Main isLoggedIn={isLoggedIn}>
       <Head>
         <html lang='en' />
-        <title>{ !isLoggedIn() ? 'Home' : 'Forums' } - JUET Overflow</title>
+        <title>{ !true ? 'Home' : 'Forums' } - JUET Overflow</title>
         <meta name='description' content='JUET Overflow is a discussion board for JUET students from all years and branches.' />
       </Head>
     {
