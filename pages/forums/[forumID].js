@@ -30,7 +30,7 @@ const Forum = ({ isLoggedIn }) => {
 
   return <Main isLoggedIn={isLoggedIn}>
     <Head>
-      <title>{ id } - JUET Overflow</title>
+      <title>{ forum.forum.name } - JUET Overflow</title>
     </Head>
     <main className="bg-slate-800 text-gray-100 text-center pt-3">
       <h1 className="text-6xl font-bold">{ forum.forum.name }</h1>
