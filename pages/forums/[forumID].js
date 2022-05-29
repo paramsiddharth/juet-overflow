@@ -43,7 +43,7 @@ const Forum = ({ isLoggedIn }) => {
         {
           forum.forum.threads > 0 ?
           forum.threads.map((t, i) => (
-            <div className='my-2 py-3 px-2 bg-slate-900'>
+            <div key={i} className='my-2 py-3 px-2 bg-slate-900'>
               <h3 className='text-xl text-red-400'>
                 <Link href={'/forums/' + id + '/' + t.id}>
                   { t.title }
